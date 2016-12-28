@@ -13,8 +13,8 @@ sudo yum install -y install java-1.7.0-openjdk
 #install tomcat
 sudo yum install tomcat8 -y
 
-#git config --global user.name "bw4sz"
-#git config --global user.email "benweinstein2010@gmail.com"
+#postgressql
+yum install postgresql
 
 git clone https://github.com/bw4sz/Wildbook.git --depth 1 -b 6.x
 

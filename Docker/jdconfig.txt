@@ -1,0 +1,21 @@
+##################################################################################################
+# This properties file contains the Wildbook DataNucleus MySQL database configuration parameters. 
+##################################################################################################
+
+##################################################################################################
+# The following three lines create a connection to the MySQL database.
+# The appropriate Java JDBC JAR file for the MySQL server version must be copied to /WEB-INF/lib.
+# The "shepherd" database needs to be created.
+##################################################################################################
+datanucleus.ConnectionDriverName=com.mysql.jdbc.Driver
+datanucleus.ConnectionURL=jdbc:mysql://mysql-wildbook:3306/shepherd
+javax.jdo.PersistenceManagerFactoryClass = org.datanucleus.api.jdo.JDOPersistenceManagerFactory     
+##################################################################################################
+
+datanucleus.ConnectionUserName = shepherd              
+datanucleus.ConnectionPassword = shepherd
+datanucleus.autoCreateSchema = true
+datanucleus.NontransactionalRead = true        
+datanucleus.Multithreaded = true
+datanucleus.RestoreValues = true
+datanucleus.storeManagerType = rdbms
