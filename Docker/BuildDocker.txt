@@ -30,6 +30,6 @@ sudo yum install -y tomcat8-webapps tomcat8-docs-webapp tomcat8-admin-webapps
 #move war
 sudo mv target/wildbook-6.0.0-EXPERIMENTAL.war /usr/share/tomcat8/webapps/
 
-
+#start tomcat
 sudo service tomcat8 start
 
