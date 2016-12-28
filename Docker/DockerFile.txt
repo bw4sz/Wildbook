@@ -1,0 +1,27 @@
+Dockerfile:
+FROM tomcat:latest
+MAINTAINER Ben Weinstein <weinsteb@oregonstate.edu>
+
+RUN apt-get update -qq
+RUN which curl || apt-get install curl -y
+RUN which jar || apt-get install openjdk-7-jdk -y
+
+WORKDIR /tmp
+
+# Copy the Wildbook configuration file from the docker build directory to the docker container's /tmp directory
+COPY ./jdoconfig.properties jdoconfig.properties
+# Set the permissions of the configuration file
+RUN chmod 600 ./jdoconfig.properties
+
+# curl down the Wildbook war file from the Wildbook download site
+RUN curl -OL http://scribble.com/wb/wildbook.war
+# Extract the war file
+RUN jar -xf ./wildbook.war
+# Now remove the war file
+RUN rm -f ./wildbook.war 
+
+# Now move the Wildbook war file to the Tomcat webapps directory
+RUN mv ./wildbook.war /usr/local/tomcat/webapps/wildbook.war
+
+# Start Tomcat when the container is run
+CMD ["catalina.sh", "run"]

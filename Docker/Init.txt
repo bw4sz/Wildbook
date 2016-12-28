@@ -1,0 +1,11 @@
+#install docker
+sudo yum -y install  docker 
+sudo yum -y install  git 
+
+#start docker
+sudo service docker start
+
+#Pull WildbookS
+sudo docker pull gforghetti/tomcat-wildbook
+
+sudo docker run gforghetti/tomcat-wildbook
