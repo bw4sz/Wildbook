@@ -11,7 +11,7 @@ sudo yum install -y apache-maven
 sudo yum install -y install java-1.7.0-openjdk
 
 #install tomcat
-sudo yum install tomcat6 -y
+sudo yum install tomcat8 -y
 
 #git config --global user.name "bw4sz"
 #git config --global user.email "benweinstein2010@gmail.com"
@@ -25,10 +25,11 @@ mvn clean install
 
 #start tomcat
 #default page
-sudo yum install tomcat6-webapps tomcat6-docs-webapp tomcat6-admin-webapps -Y
+sudo yum install -y tomcat8-webapps tomcat8-docs-webapp tomcat8-admin-webapps
 
 #move war
-sudo mv target/wildbook-6.0.0-EXPERIMENTAL.war /usr/share/tomcat6/webapps/
+sudo mv target/wildbook-6.0.0-EXPERIMENTAL.war /usr/share/tomcat8/webapps/
 
-sudo service tomcat6 start
+
+sudo service tomcat8 start
 
