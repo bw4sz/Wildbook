@@ -1,0 +1,43 @@
+
+winpty docker run -it ubuntu
+
+#git to clone repo
+RUN apt-get update
+RUN apt-get -y install  git 
+
+#maven to build WAR
+RUN apt-get -y install maven
+
+#java 
+RUN apt-get -y install default-jdk
+
+#tomcat for hosting
+RUN apt-get install -y tomcat8 
+
+#SQL database
+RUN apt-get install -y postgresql
+
+#Clone latest wildbook branch
+RUN git clone https://github.com/bw4sz/Wildbook.git --depth 1 -b 6.x
+
+#build war
+RUN cd Wildbook
+
+#build war
+RUN mvn clean install
+
+#start tomcat
+#default page, just in case something goes wrong
+RUN apt-get install -y tomcat8-webapps tomcat8-docs-webapp tomcat8-admin-webapps
+
+#Move wildbook to apache webapps
+RUN mv target/wildbook-6.0.0-EXPERIMENTAL.war /usr/share/tomcat8/webapps/
+
+#start tomcat8
+RUN service tomcat8 start
+
+EXPOSE 8080
+
+
+# to view
+#docker run -p 8888:80 bw4sz/wildbook

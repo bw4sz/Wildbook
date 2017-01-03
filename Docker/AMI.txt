@@ -1,0 +1,38 @@
+
+#Docker Environment for Wildbook
+MAINTAINER Ben Weinstein <weinsteb@oregonstate.edu>
+
+#install, git and maven
+RUN yum -y install  git 
+
+#install maven for build
+sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
+sudo sed -i s/\$releasever/6/g /etc/yum.repos.d/epel-apache-maven.repo
+sudo yum install -y apache-maven
+
+#install java
+sudo yum install -y install java-1.7.0-openjdk
+
+#install tomcat
+sudo yum install tomcat8 -y
+
+#postgressql
+yum install postgresql
+
+git clone https://github.com/bw4sz/Wildbook.git --depth 1 -b 6.x
+
+cd Wildbook
+
+#build war
+mvn clean install
+
+#start tomcat
+#default page
+sudo yum install -y tomcat8-webapps tomcat8-docs-webapp tomcat8-admin-webapps
+
+#move war
+sudo mv target/wildbook-6.0.0-EXPERIMENTAL.war /usr/share/tomcat8/webapps/
+
+#start tomcat
+sudo service tomcat8 start
+
