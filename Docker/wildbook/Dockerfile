@@ -15,19 +15,15 @@ RUN apt-get -y install maven
 #SQL database
 RUN apt-get install -y postgresql
 
+RUN apt-get install -y default-jdk
 #Clone latest wildbook branch
-RUN cd ~
-RUN git clone https://github.com/bw4sz/Wildbook.git --depth 1 -b 6.x
-
-#eventually we will build from source, fails tests.
-#build war
-RUN cd Wildbook
+RUN git clone https://github.com/bw4sz/Wildbook.git --depth 1 -b 5.x
 
 #build war
-RUN mvn clean install
+RUN mvn clean install -f Wildbook/pom.xml
 
 #Move wildbook to apache webapps
-RUN mv target/wildbook-6.0.0-EXPERIMENTAL.war /usr/share/tomcat8/webapps/
+RUN mv Wildbook/target/wildbook-5.5.0-RELEASE.war /usr/local/tomcat/webapps/
 
 #start tomcat8
 CMD ["catalina.sh", "run"]
