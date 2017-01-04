@@ -1,9 +1,9 @@
 
 #Docker Environment for Wildbook
-MAINTAINER Ben Weinstein <weinsteb@oregonstate.edu>
+#MAINTAINER Ben Weinstein <weinsteb@oregonstate.edu>
 
 #install, git and maven
-RUN yum -y install  git 
+sudo yum -y install git 
 
 #install maven for build
 sudo wget http://repos.fedorapeople.org/repos/dchen/apache-maven/epel-apache-maven.repo -O /etc/yum.repos.d/epel-apache-maven.repo
@@ -17,7 +17,7 @@ sudo yum install -y install java-1.7.0-openjdk
 sudo yum install tomcat8 -y
 
 #postgressql
-yum install postgresql
+yum install -y postgresql
 
 git clone https://github.com/bw4sz/Wildbook.git --depth 1 -b 6.x
 
