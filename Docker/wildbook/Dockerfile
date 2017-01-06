@@ -41,8 +41,6 @@ RUN echo "listen_addresses='*'" >> /etc/postgresql/9.4/main/postgresql.conf
 
 USER root
 
-RUN service postgresql start
-
 ## Move wildbook to apache webapps
 RUN mv Wildbook/target/wildbook-5.5.0-RELEASE.war /usr/local/tomcat/webapps/
 
